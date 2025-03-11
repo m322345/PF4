@@ -1,64 +1,54 @@
 ![Entete](images/projet.png)
 
-# 📌 Préparation des Données pour un Organisme de Santé Publique
+# 📌 Segmentation des Clients d’un Site E-commerce
 
 ## 📖 Contexte
-L'agence **Santé publique France** souhaite améliorer la base de données **Open Food Facts**, qui fournit des informations nutritionnelles sur divers produits alimentaires. Actuellement, la saisie des données est manuelle, ce qui entraîne des erreurs et des valeurs manquantes.
+Olist, une entreprise brésilienne spécialisée dans les marketplaces en ligne, souhaite renforcer son équipe **Data** et exploiter l’analyse des données pour optimiser ses campagnes marketing. 
 
-L'objectif du projet est d'explorer et de nettoyer les données pour évaluer la **faisabilité d'un système de suggestion automatique** des valeurs manquantes.
+L’objectif est de mettre en place une **segmentation client** basée sur les données d’achats et de satisfaction afin d’aider les équipes e-commerce à **cibler plus efficacement leurs campagnes** et à améliorer l’expérience client.
 
 ## 🎯 Objectifs du Projet
-- ✅ Nettoyer et explorer les données de **Open Food Facts**.
-- ✅ Identifier et traiter les **valeurs aberrantes** et **valeurs manquantes**.
-- ✅ Réaliser une **analyse univariée et bivariée** des données.
-- ✅ Examiner la faisabilité d’un **système de complétion automatique**.
-- ✅ Vérifier la conformité du projet avec les **principes du RGPD**.
+- ✅ Mettre en place un **dashboard SQL** pour le suivi des KPIs Customer Experience.
+- ✅ Développer un **modèle de segmentation client** basé sur des techniques de clustering non supervisées.
+- ✅ Fournir une **analyse détaillée** des segments pour une application métier.
+- ✅ Déterminer la **fréquence de mise à jour** du modèle et proposer un **contrat de maintenance**.
 
 ## 🛠️ Étapes du Projet
 
-### 1️⃣ **Nettoyage et Filtrage des Données**
-- Identifier les **features pertinentes** (quantitatives et qualitatives).
-- Sélectionner une variable cible avec plus de **50% de valeurs manquantes**.
-- Supprimer les **doublons** et les entrées incomplètes.
-- Automatiser le nettoyage pour garantir la **réutilisabilité** du code.
+### 1️⃣ **Implémentation des Requêtes SQL**
+- Compréhension du **jeu de données** et exploration des tables.
+- Rédaction des requêtes SQL pour extraire les **KPIs Customer Experience**.
+- Intégration des requêtes dans un **dashboard interactif**.
 
-### 2️⃣ **Identification et Traitement des Valeurs Aberrantes**
-- Détection par **visualisation** (boxplots, histogrammes, scatter plots).
-- Utilisation de méthodes statistiques :
-  - Plage interquartile (IQR), écart-type, etc.
-- Traitement des valeurs aberrantes : suppression, remplacement ou catégorisation.
+### 2️⃣ **Feature Engineering et Préparation des Données**
+- Extraction et création de **features pertinentes** (RFM, satisfaction client, fréquence d’achat, etc.).
+- Nettoyage des données et transformation des variables pour le clustering.
+- Normalisation et encodage des variables selon les besoins des algorithmes.
 
-### 3️⃣ **Gestion des Valeurs Manquantes**
-- Analyse des motifs de valeurs manquantes (**aléatoires ou systématiques**).
-- Sélection de la meilleure méthode d’imputation :
-  - **Statistiques** : moyenne, médiane, mode.
-  - **Modèles avancés** : KNN, régression linéaire.
+### 3️⃣ **Modélisation du Clustering**
+- Application d’algorithmes de clustering (**K-Means, DBSCAN, GMM**).
+- Détermination du **nombre optimal de clusters** via des méthodes analytiques et métier.
+- Analyse des segments pour les rendre **exploitables** par l’équipe marketing.
 
-### 4️⃣ **Analyse Univariée et Bivariée**
-- Étude des **distributions** des variables via histogrammes et boxplots.
-- Identification des **corrélations** entre les variables via :
-  - Matrices de corrélation, scatter plots.
-- Sélection des variables ayant une influence sur la cible.
+### 4️⃣ **Évaluation et Stabilité du Modèle**
+- Simulation de l’évolution des segments dans le temps.
+- Mesure de la divergence des clusters avec l’**Adjusted Rand Index (ARI)**.
+- Proposition d’un **rythme de mise à jour** du modèle.
 
-### 5️⃣ **Analyse Multivariée et Sélection des Variables**
-- Visualisation avancée : PCA, ACP, ANOVA.
-- Sélection des meilleures features pour un modèle de suggestion automatique.
-
-### 6️⃣ **Présentation et Respect du RGPD**
-- Explication des méthodes utilisées et des conclusions.
-- Justification de la conformité aux **5 principes du RGPD**.
-- Production d’une présentation claire pour un **public non technique**.
+### 5️⃣ **Présentation**
+- Création d’un **notebook documenté** pour assurer la reproductibilité.
+- Réalisation d’une **présentation claire et concise** mettant en avant les insights métier.
 
 ## 📦 Livrables Attendus
-✅ Un **notebook Jupyter** documenté avec le processus de nettoyage et d’analyse.
-✅ Un **dataset propre et structuré**.
-✅ Des **visualisations graphiques** pour illustrer l’analyse.
-✅ Une **présentation détaillée** expliquant la faisabilité du projet.
+- ✅ Un **dashboard SQL** avec les KPIs Customer Experience.
+- ✅ Un **notebook** contenant l’analyse exploratoire et la modélisation du clustering.
+- ✅ Un **rapport détaillé** sur la segmentation et son exploitation métier.
+- ✅ Une **proposition de fréquence de mise à jour** du modèle.
+- ✅ Une **présentation synthétique** pour le partage des résultats.
 
 ## 🚀 Objectif Final
-Démontrer qu'il est possible d'améliorer la saisie des données d’**Open Food Facts** en développant un **système de suggestion automatique**, tout en respectant les normes du **RGPD** et en garantissant des données fiables.
+Développer une **segmentation client robuste et exploitable** permettant à Olist d’optimiser ses campagnes marketing et d’améliorer l’expérience client, tout en assurant une mise à jour efficace du modèle dans le temps.
 
 ---
-📅 **Délai** : Mission à réaliser dans un temps limité.
-👥 **Compétences requises** : Python, Pandas, Analyse de données, Visualisation.
-🌍 **Source des données** : Open Food Facts.
+- 👥 **Compétences requises** : SQL, Python, Machine Learning, Clustering.
+- 🌍 **Source des données** : Base de données e-commerce anonymisée.
