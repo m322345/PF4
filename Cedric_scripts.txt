@@ -1,0 +1,74 @@
+/* --------------------------------------------------------------------------------------------------------------------------------------------------
+En excluant les commandes annulées, quelles sont les commandesrécentes de moins de 3 mois que les clients ont reçues avec au moins 3 jours de retard ?
+-------------------------------------------------------------------------------------------------------------------------------------------------- */
+select * 
+from
+    orders
+where 
+    not order_status = "canceled"
+    and order_purchase_timestamp > DATETIME(datetime(), '-3 months') /*80 mois pour faire test*/
+    and ((julianday(order_estimated_delivery_date) - julianday(order_delivered_customer_date))>=3);
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------
+Qui sont les vendeurs ayant généré un chiffre d'affaires de plus de 100000 Real sur des commandes livrées via Olist ?
+-------------------------------------------------------------------------------------------------------------------------------------------------- */
+select
+    i.seller_id as id_vendeur,
+    sum(price) as chiffre_affaire
+from
+    orders as o,
+    order_items as i
+where 
+    o.order_status = 'delivered'
+    And o.order_id = i.order_id
+group by
+    i.seller_id
+having chiffre_affaire > 100000;
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------
+Qui sont les nouveaux vendeurs (moins de 3 mois d'ancienneté) qui sont déjà très engagés avec la plateforme (ayant déjà vendu plus de 30 produits) ?
+-------------------------------------------------------------------------------------------------------------------------------------------------- */
+select
+    i.seller_id as id_vendeur,
+    count(i.order_id) as nb_vente,
+    min(order_purchase_timestamp) as debut_vente
+from
+    orders as o,
+    order_items as i
+where 
+    o.order_status = 'delivered'
+    And o.order_id = i.order_id
+group by
+    i.seller_id
+having 
+    nb_vente > 30    
+    and debut_vente > DATETIME(datetime(), '-3 months'); /*80 mois pour faire test*/
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------
+Quels sont les 5 codes postaux, enregistrant plus de 30 reviews, avec le pire review score moyen sur les 12 derniers mois ?
+-------------------------------------------------------------------------------------------------------------------------------------------------- */
+select
+    avg(r.review_score) as score_moy,
+    count(*) as nb_review,
+    c.customer_zip_code_prefix as zip
+from
+    orders as o,
+    order_reviews as r,
+    customers as c
+where 
+    o.customer_id = c.customer_id
+    And o.order_id = r.order_id
+    And r.review_creation_date > DATETIME(datetime(), '-12 months') /*80 mois pour faire test*/
+group by
+    zip
+having 
+    nb_review > 30
+order by 
+    score_moy
+limit 5;
